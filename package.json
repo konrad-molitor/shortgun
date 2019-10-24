@@ -1,0 +1,47 @@
+{
+  "name": "shortgun",
+  "version": "1.0.0",
+  "description": "Full-stack JS url shortener service",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "tsc": "tsc",
+    "dev": "ts-node-dev --respawn ./app/app.ts",
+    "prod": "tsc && node ./build/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konrad-molitor/shortgun.git"
+  },
+  "keywords": [
+    "url",
+    "shortener",
+    "javascript"
+  ],
+  "author": "Ismail Valiev (Konrad Molitor)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/konrad-molitor/shortgun/issues"
+  },
+  "homepage": "https://github.com/konrad-molitor/shortgun#readme",
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/express": "^4.17.1",
+    "@types/jest": "^24.0.19",
+    "@types/jsonwebtoken": "^8.3.5",
+    "@types/mongoose": "^5.5.22",
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.1.0",
+    "ts-node-dev": "^1.0.0-pre.43",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.5"
+  }
+}
