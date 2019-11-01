@@ -2,7 +2,8 @@ import jwt from "jsonwebtoken";
 
 const jwtSignPromise = (payload: object): Promise<string> => {
   return new Promise((resolve, reject) => {
-    jwt.sign(payload, "supersecret", { algorithm: "HS256"}, (err, token) => {
+    // @ts-ignore
+    jwt.sign(payload, process.env.SECRET_KEY, { algorithm: "HS256"}, (err: Error, token?: string) => {
       if (err) {
         reject(err);
       } else {

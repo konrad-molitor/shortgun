@@ -1,3 +1,8 @@
+import dotenv from "dotenv";
+const result = dotenv.config();
+if (result.error){
+  throw result.error;
+}
 import bodyParser from "body-parser";
 import express from "express";
 import { MongoError } from "mongodb";
@@ -9,7 +14,8 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(router);
 
-const db = mongoose.connect("mongodb://shortgun:shortgun@localhost:27017/shortgun",
+// @ts-ignore
+const db = mongoose.connect(process.env.DB_URL,
   {useNewUrlParser: true, useUnifiedTopology: true},
   (err: MongoError): void => {
     if (err) {
