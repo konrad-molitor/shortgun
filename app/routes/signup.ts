@@ -10,7 +10,7 @@ const signup = async (req: Request, res: Response): Promise<void> => {
     const saved = await newUser.save();
     res.json(saved.email);
   } catch (err) {
-    if (err.code === 11000){
+    if (err.code === 11000) {
       res.status(409).send("User already exists.");
     }
     res.status(500).send("Error");
