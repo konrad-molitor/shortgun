@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { auth } from "../middleware/auth";
+import errorHandler from "../middleware/errorHandler";
 import addShortcut from "./addShortcut";
 import deleteShortcut from "./deleteShortcut";
 import loginUser from "./login";
@@ -8,6 +9,8 @@ import shortcutRedirect from "./shortcutRedirect";
 import signup from "./signup";
 
 const router = Router();
+
+router.use(errorHandler);
 
 router.get("/a/profile", auth, (req, res) => getProfile(req, res));
 

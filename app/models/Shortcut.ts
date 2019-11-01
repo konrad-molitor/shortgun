@@ -7,7 +7,8 @@ const ShortcutSchema = new Schema({
     required: true
   },
   shortUrl: {
-    type: String
+    type: String,
+    unique: true,
   },
   author: {
     type: Schema.Types.ObjectId,

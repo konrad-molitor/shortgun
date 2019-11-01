@@ -4,6 +4,7 @@ import User from "../models/User";
 
 interface IRequest extends Request {
   user?: any;
+  error?: any;
 }
 
 const auth = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -17,22 +18,34 @@ const auth = async (req: Request, res: Response, next: NextFunction): Promise<vo
           if (foundUser) {
             const request = req as IRequest;
             request.user = {email: foundUser.email, id: foundUser.id};
-            next();
           } else {
             // If no user with such id
-            throw new Error("No such user.");
+            const request = req as IRequest;
+            request.error = {
+              message: "No such user.",
+              status: 401,
+            };
           }
         } catch (e) {
-          next(e);
+          const request = req as IRequest;
+          request.error = e;
         }
       } else {
         // if bearer is not present
-        res.status(400).send("Incorrect request headers.");
+        const request = req as IRequest;
+        request.error = {
+          message: "Incorrect request headers.",
+          status: 400,
+        };
       }
   } else {
-    // if no X-Auth header provided
-    res.status(401).send("Authorization required.");
+    const request = req as IRequest;
+    request.error = {
+      message: "Authorization required.",
+      status: 401,
+    };
   }
+  next();
 };
 
 export { auth, IRequest };
