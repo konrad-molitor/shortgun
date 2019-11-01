@@ -10,7 +10,7 @@ const shortcutRedirect = async (req: Request, res: Response): Promise<void> => {
       res.redirect("/");
     }
   } catch (e) {
-    res.status(500).redirect("/");
+    res.redirect("/");
   }
 };
 
