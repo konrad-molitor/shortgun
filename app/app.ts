@@ -1,3 +1,4 @@
+import cors from "cors";
 import dotenv from "dotenv";
 const result = dotenv.config();
 if (result.error) {
@@ -10,6 +11,9 @@ import mongoose from "mongoose";
 import router from "./routes";
 
 const app: express.Application = express();
+app.use(cors({
+  origin: "http://localhost",
+}));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(router);
