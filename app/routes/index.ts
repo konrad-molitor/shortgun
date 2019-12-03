@@ -19,7 +19,7 @@ router.post("/a/add", auth, (req, res) => addShortcut(req, res));
 
 router.delete("/a/item/:id", auth, (req, res) => deleteShortcut(req, res));
 
-router.get("/:shortcut", (req, res) => shortcutRedirect(req, res));
+router.get("/s/:shortcut", (req, res) => shortcutRedirect(req, res));
 
 router.post("/a/signup", (req, res) => signup(req, res));
 
