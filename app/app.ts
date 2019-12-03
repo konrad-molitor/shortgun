@@ -9,6 +9,7 @@ import express from "express";
 import { MongoError } from "mongodb";
 import mongoose from "mongoose";
 import router from "./routes";
+import logger from "./middleware/logger";
 
 const app: express.Application = express();
 app.use(cors({
@@ -16,6 +17,7 @@ app.use(cors({
 }));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
+app.use(logger);
 app.use(router);
 
 // @ts-ignore
@@ -25,6 +27,6 @@ const db = mongoose.connect(process.env.DB_URL,
     if (err) {
       throw err;
     } else {
-      app.listen(3000);
+      app.listen(5000);
     }
 });

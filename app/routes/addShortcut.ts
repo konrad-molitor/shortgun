@@ -28,7 +28,7 @@ const addShortcut = async (req: IRequest, res: Response) => {
         const saved = await shortcut.save();
         // @ts-ignore
         await author.addUrl(saved._id);
-        res.send(saved);
+        res.json(saved);
       } catch (e) {
         res.status(500).send(e);
       }

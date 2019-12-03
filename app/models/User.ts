@@ -1,7 +1,6 @@
-import mongoose, { Schema, Document, SchemaTypes } from "mongoose";
 import bcrypt from "bcrypt";
-import { Function } from "@babel/types";
 import { ObjectID } from "bson";
+import mongoose, { Document, Schema } from "mongoose";
 
 const UserSchema: Schema = new Schema({
   email: {
@@ -20,6 +19,7 @@ const UserSchema: Schema = new Schema({
 });
 
 UserSchema.pre<IUser>("save", async function (next) {
+    if (!this.isModified("password")) { return next(); }
     try {
       this.password = await bcrypt.hash(this.password, 10);
     } catch (err) {
