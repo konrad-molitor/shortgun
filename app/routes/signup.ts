@@ -12,8 +12,9 @@ const signup = async (req: Request, res: Response): Promise<void> => {
   } catch (err) {
     if (err.code === 11000) {
       res.status(409).send("User already exists.");
+    } else {
+        res.status(500).send("Error");
     }
-    res.status(500).send("Error");
   }
 };
 
