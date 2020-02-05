@@ -7,6 +7,7 @@ import loginUser from "./login";
 import getProfile from "./profile";
 import shortcutRedirect from "./shortcutRedirect";
 import signup from "./signup";
+import saveMessage from "./messages";
 
 const router = Router();
 
@@ -23,5 +24,7 @@ router.get("/s/:shortcut", (req, res) => shortcutRedirect(req, res));
 router.post("/a/signup", (req, res) => signup(req, res));
 
 router.post("/a/login", (req, res) => loginUser(req, res));
+
+router.post("/a/message", auth, (req, res) => saveMessage(req, res));
 
 export default router;
