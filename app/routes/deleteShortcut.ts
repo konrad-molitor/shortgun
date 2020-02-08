@@ -1,4 +1,5 @@
 import { Response } from "express";
+import fs from "fs";
 import mongoose from "mongoose";
 import { IRequest } from "../middleware/auth";
 import Shortcut from "../models/Shortcut";
@@ -20,6 +21,9 @@ const deleteShortcut = async (req: IRequest, res: Response) => {
             if (result) {
               const removed = await shortcut.remove();
               res.send(removed);
+              if (removed.preview) {
+                fs.unlink(`${process.env.THUMBNAILS_PATH}/${removed.preview}`, err => {});
+              }
             } else {
               res.status(500).send("Server error.");
             }
