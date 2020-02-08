@@ -14,6 +14,9 @@ const ShortcutSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true,
   },
+  preview: {
+    type: String,
+  },
 });
 
 export interface IShortcut extends Document {
