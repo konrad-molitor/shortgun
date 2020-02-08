@@ -18,7 +18,7 @@ const ShortcutSchema = new Schema({
     type: String,
   },
   pageTitle: {
-    type: String
+    type: String,
   },
 });
 
