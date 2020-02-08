@@ -23,6 +23,7 @@ export interface IShortcut extends Document {
   longUrl: string;
   shortUrl: string;
   author: IUser["_id"];
+  preview?: string;
 }
 
 export default mongoose.model<IShortcut>("Shortcut", ShortcutSchema);
