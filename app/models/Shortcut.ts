@@ -17,6 +17,9 @@ const ShortcutSchema = new Schema({
   preview: {
     type: String,
   },
+  pageTitle: {
+    type: String
+  },
 });
 
 export interface IShortcut extends Document {
@@ -24,6 +27,7 @@ export interface IShortcut extends Document {
   shortUrl: string;
   author: IUser["_id"];
   preview?: string;
+  pageTitle?: string;
 }
 
 export default mongoose.model<IShortcut>("Shortcut", ShortcutSchema);

@@ -7,7 +7,7 @@ const getProfile = async (req: IRequest, res: Response) => {
     try {
       const user = await User.findById(req.user.id).select(["_id", "email", "urls"]).populate({
         path: "urls",
-        select: ["longUrl", "shortUrl", "_id", "preview"],
+        select: ["longUrl", "shortUrl", "_id", "preview", "pageTitle"],
       });
       res.send(user);
     } catch (e) {

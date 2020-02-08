@@ -36,10 +36,15 @@ const addShortcut = async (req: IRequest, res: Response) => {
         page.on("load", (e) => {
           const createPreview = async (screenshotPage: any, shortcutId: string) => {
             const screenshotBuffer = await screenshotPage.screenshot({type: "jpeg", quality: 90, encoding: "binary"});
+            const title = await screenshotPage.title();
             await sharp(screenshotBuffer)
               .resize(400)
               .toFile(`${process.env.THUMBNAILS_PATH}/${shortcutId}.jpg`);
-            await Shortcut.findByIdAndUpdate(saved.id, {preview: `${shortcutId}.jpg`}, {new: true});
+            await Shortcut.findByIdAndUpdate(
+                saved.id,
+                {preview: `${shortcutId}.jpg`, pageTitle: title},
+                {new: true},
+              );
             await browser.close();
           };
           createPreview(page, saved.id);
