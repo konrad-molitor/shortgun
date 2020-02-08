@@ -8,8 +8,8 @@ import bodyParser from "body-parser";
 import express from "express";
 import { MongoError } from "mongodb";
 import mongoose from "mongoose";
-import router from "./routes";
 import logger from "./middleware/logger";
+import router from "./routes";
 
 const app: express.Application = express();
 app.use(cors({
@@ -22,7 +22,12 @@ app.use(router);
 
 // @ts-ignore
 const db = mongoose.connect(process.env.DB_URL,
-  {useNewUrlParser: true, useUnifiedTopology: true},
+  {
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
   (err: MongoError): void => {
     if (err) {
       throw err;
