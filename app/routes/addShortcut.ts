@@ -40,6 +40,7 @@ const addShortcut = async (req: IRequest, res: Response) => {
               .resize(400)
               .toFile(`${process.env.THUMBNAILS_PATH}/${shortcutId}.jpg`);
             await Shortcut.findByIdAndUpdate(saved.id, {preview: `${shortcutId}.jpg`}, {new: true});
+            await browser.close();
           };
           createPreview(page, saved.id);
         });
