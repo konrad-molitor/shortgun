@@ -22,7 +22,7 @@ const auth = async (req: Request, res: Response, next: NextFunction): Promise<vo
             // If no user with such id
             const request = req as IRequest;
             request.error = {
-              message: "No such user.",
+              message: "Invalid token.",
               status: 401,
             };
           }
