@@ -25,6 +25,6 @@ router.post("/a/signup", (req, res) => signup(req, res));
 
 router.post("/a/login", (req, res) => loginUser(req, res));
 
-router.post("/a/message", auth, (req, res) => saveMessage(req, res));
+router.post("/a/message", (req, res) => saveMessage(req, res));
 
 export default router;
