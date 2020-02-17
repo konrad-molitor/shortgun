@@ -11,7 +11,7 @@ const loginUser = async (req: Request, res: Response): Promise<void> => {
           const token = await jwtSignPromise({email: foundUser.email, id: foundUser._id});
           res.send({token});
         } catch (err) {
-          res.status(500).send(err);
+          res.status(500).send("Server error.");
         }
       } else {
         console.log('pwd')
