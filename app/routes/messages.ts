@@ -14,7 +14,7 @@ const saveMessage = async (req: IRequest, res: Response): Promise<void> => {
         await newMessage.save();
         res.status(204).send();
     } catch (e) {
-        res.status(500);
+        res.status(500).send();
     }
 };
 
